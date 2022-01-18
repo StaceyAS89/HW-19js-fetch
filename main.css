@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: max-content;
+}
+ ul#albums_list {
+    list-style-type: none;
+ }
+.wrapper > ul#albums_list {
+    list-style-type: none;
+margin: 0;
+padding: 0;
+
+}
+
+ul, li#albums_list {
+    list-style-type: none;
+    text-decoration: none;
+    padding: 0;
+}
+
+img {
+    display: flex;
+
+}
