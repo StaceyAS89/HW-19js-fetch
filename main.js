@@ -17,6 +17,31 @@ async function getAlbums() {
     }
 }
 
+
+
+async function showAlbums() {
+    try {
+        let result = await getAlbums();
+        renderAlbums(result)
+    } catch (err) {
+        console.log("Ошибка HTTP: " + err);
+    }
+}
+
+function renderAlbums(albums) {
+    let listAlbumsTemplate = '';
+
+    for (let item of albums) {
+        if (!item) {
+            return;
+        } else {
+            listAlbumsTemplate += `<li class="album-titles" id="${item.id}">${item.title}</li>`
+        }
+        albumsList.innerHTML = listAlbumsTemplate;
+    }
+}
+showAlbums();
+
 async function getAlbumsPhotos(id) {
     try {
         let response = await fetch(`${urlAlbumsPhotos + id}`)
@@ -26,44 +51,30 @@ async function getAlbumsPhotos(id) {
     }
 
 }
-
-async function renderAlbums() {
-    let albums = '';
-
-    try {
-        let result = await getAlbums();
-        for (let item of result) {
-            if (!item) {
-                return;
-            } else {
-                albums += `<li class="album-titles" id="${item.id}">${item.title}</li>`
-            }
-            albumsList.innerHTML = albums;
-        }
-    } catch (err) {
-        console.log("Ошибка HTTP: " + err);
-    }
-}
-renderAlbums();
-
-async function renderAlbumsPhotos(id) {
-    let albumsPhotos = '';
+async function showAlbumsPhotos(id) {
     try {
         let result = await getAlbumsPhotos(id);
-        for (let item of result) {
-            if (!item) {
-                return;
-            } else {
-                albumsPhotos += `<img class="album-photos-titles" src="${item.url}" id="${item.id}">${item.url}>`
-            }
-            albumsPhotoList.innerHTML = albumsPhotos;
-        }
+        renderAlbumsPhotos(result)
     } catch (err) {
         console.log("Ошибка HTTP: " + err);
     }
 }
-renderAlbumsPhotos("1");
+
+function renderAlbumsPhotos(result) {
+    let albumsPhotosTemplate = '';
+    for (let item of result) {
+        if (!item) {
+            return;
+        } else {
+            albumsPhotosTemplate += `<img class="album-photos-titles" src="${item.url}" id="${item.id}">`
+        }
+        albumsPhotoList.innerHTML = albumsPhotosTemplate;
+    }
+}
+
+
+showAlbumsPhotos("1");
 
 albumsList.addEventListener('click', (event) => {
-    renderAlbumsPhotos(event.target.id)
+    showAlbumsPhotos(event.target.id)
 })

@@ -1,25 +1,35 @@
 .wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    width: max-content;
+  display: flex;
+  justify-content: space-evenly;
+  width: max-content;
 }
- ul#albums_list {
-    list-style-type: none;
- }
+ul#albums_list {
+  list-style-type: none;
+}
 .wrapper > ul#albums_list {
-    list-style-type: none;
-margin: 0;
-padding: 0;
-
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-ul, li#albums_list {
-    list-style-type: none;
-    text-decoration: none;
-    padding: 0;
+ul,
+li#albums_list {
+  list-style-type: none;
+  text-decoration: none;
+  padding: 0;
 }
 
 img {
-    display: flex;
-
+  display: flex;
+  padding: 10px;
+  border-radius: 25%;
+  -webkit-border-radius: 25%;
+  -moz-border-radius: 25%;
+  -ms-border-radius: 25%;
+  -o-border-radius: 25%;
+}
+li {
+    cursor: pointer;
+    padding: 10px;
+    color: blue;
 }
